@@ -1,9 +1,70 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { node } from 'prop-types';
 import { styled } from 'styled-components';
 import { WindowContext } from '../contexts/WindowContext';
 import { Mprserv120 } from '@react95/icons';
-import { Button, TextInput } from 'react95';
+import { Button, TextInput, Hourglass } from 'react95';
+
+const HOURGLASS_TIME = 3000;
+const CHANGE_SCREEN_TIME = 4000;
+
+const StartView = () => {
+  const { setComputerState } = useContext(WindowContext);
+  const [visible, setVisible] = useState(true);
+  const [loginClicked, setLoginClicked] = useState(false);
+
+  const onLogin = (event) => {
+    event.currentTarget.blur()
+    setLoginClicked(true);
+
+    setTimeout(() => {
+      setVisible(false);
+    }, HOURGLASS_TIME);
+
+    setTimeout(() => {
+      setComputerState("loading");
+    }, CHANGE_SCREEN_TIME);
+  }
+
+  return (
+    <Container>
+      { 
+        visible &&
+        <LoginContainer>
+        <Row>
+          <LoginIcon variant="48x48_4"/>
+          <Inputs>
+            <Row>
+              <Text>Username</Text>
+              <TextInput 
+                value="gatochico"
+              />
+            </Row>
+            <Row>
+              <Text>Password</Text>
+              <TextInput 
+                value="password"
+                type="password"
+              />
+            </Row>
+          </Inputs>
+        <StyledButton onClick={(e) => onLogin(e)}>
+          {loginClicked ? <Hourglass /> : "ENTER"}
+        </StyledButton>
+        </Row>
+        </LoginContainer>
+      }
+    </Container>
+  )
+};
+
+StartView.defaultProps = {
+  children: null,
+};
+
+StartView.propTypes = {
+  children: node,
+};
 
 const Container = styled.div`
   display: flex;
@@ -36,42 +97,8 @@ const Inputs = styled.div`
   gap: 8px;
 `;
 
-const StartView = () => {
-  const { computerState } = useContext(WindowContext);
-
-  return (
-    <Container>
-      <LoginContainer>
-        <Row>
-          <LoginIcon variant="48x48_4"/>
-          <Inputs>
-            <Row>
-              <Text>Username</Text>
-              <TextInput 
-                value="gatochico"
-              />
-            </Row>
-            <Row>
-              <Text>Password</Text>
-              <TextInput 
-                value="password"
-                type="password"
-              />
-            </Row>
-          </Inputs>
-        <Button>ENTER</Button>
-        </Row>
-      </LoginContainer>
-    </Container>
-  )
-}
-
-StartView.defaultProps = {
-  children: null,
-}
-
-StartView.propTypes = {
-  children: node,
-}
+const StyledButton = styled(Button)`
+  min-width: 70px;
+`;
 
 export default StartView;

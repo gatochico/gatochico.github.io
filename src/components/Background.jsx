@@ -31,7 +31,7 @@ const Background = ({ children }) => {
     <Container>
       <BackgroundDiv 
         $off={computerState === "off"}
-        $bgon={computerState === "loading" || computerState === "loaded"}
+        $bgon={computerState === "loading" || computerState === "desktop"}
         $bgimg={computerState}
       >
         {children}
