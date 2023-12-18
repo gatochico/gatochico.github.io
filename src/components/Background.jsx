@@ -22,7 +22,25 @@ const BackgroundDiv = styled.div`
   height: 90vh;
   width: 80vw;
   border-radius: 8px;
-`
+
+  &:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 2px;
+    z-index: 100;
+    pointer-events: none;
+  }
+`;
 
 const Background = ({ children }) => {
   const { computerState } = useContext(WindowContext);
