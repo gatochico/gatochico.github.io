@@ -103,13 +103,14 @@ const SlidingDiv = styled.div`
 
 const Start = styled.div`
   position: relative;
-  width: 120px;
+  width: 100%;
+  padding-right: 12px;
 `;
 
 const StyledButton = styled(Button)`
   font-weight: bold;
   gap: 4px;
-  height: 25px;
+  height: 30px;
 `;
 
 const StyledMenuList = styled.div`

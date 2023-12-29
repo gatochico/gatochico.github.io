@@ -27,7 +27,7 @@ const Time = () => {
 const StyledFrame = styled(Frame)`
   align-items: center;
   display: flex;
-  height: 22px;
+  height: 30px;
   justify-content: center;
   margin-right: 2px;
   padding: 0 4px;
