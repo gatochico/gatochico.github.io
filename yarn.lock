@@ -458,6 +458,15 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@react95/clippy@^1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@react95/clippy/-/clippy-1.0.13.tgz#1720618107492cd39ef5714951b5191d25398ac2"
+  integrity sha512-XzcAhFw2Zb3W83JL2YB9H9TE80Z1BIdYTBfmSMqNRoVqhBq5UOWwBSz/sClRjoubWPaeTvtRzeDC5y9iawP0uw==
+  dependencies:
+    clippyjs "^0.0.3"
+    jquery "^3.6.0"
+    prop-types "^15.8.1"
+
 "@react95/icons@^2.0.8":
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/@react95/icons/-/icons-2.0.8.tgz#f3e673a735546b8849b68ee1391a5f0042c31d4a"
@@ -801,6 +810,13 @@ chalk@^4.0.0:
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
+
+clippyjs@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/clippyjs/-/clippyjs-0.0.3.tgz#34c45e3416b74d3773aeb37296c618a0b658fbbb"
+  integrity sha512-i4sPaKbCA6PfXiwxNK35E1io6AXN7VGwEGZR9sE8RqOgXPNtRWKbFubmx87JwSuwIrdClO/rkTMjhl2ZyOHjug==
+  dependencies:
+    jquery "^3.2.1"
 
 clsx@^1.1.1:
   version "1.2.1"
@@ -1599,6 +1615,11 @@ iterator.prototype@^1.1.2:
     has-symbols "^1.0.3"
     reflect.getprototypeof "^1.0.4"
     set-function-name "^2.0.1"
+
+jquery@^3.2.1, jquery@^3.6.0:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
+  integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"

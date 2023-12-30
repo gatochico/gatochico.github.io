@@ -1,8 +1,8 @@
-import Background from './components/Background';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import theme from './assets/theme/Theme';
 import { styleReset } from 'react95';
 import WindowContext from './contexts/WindowContext';
+import Background from './components/Background';
 import BaseView from './views/BaseView';
 
 import original from 'react95/dist/themes/original';

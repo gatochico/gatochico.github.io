@@ -13,7 +13,7 @@ const DesktopView = () => {
 
   const navIcons = useMemo(() => {
     return activeWindows
-      .filter((window) => window.open)
+      .filter((window) => window.open && !window.link)
       .map((window) => ({
         id: window.id,
         icon: window.icon,
@@ -54,7 +54,7 @@ const DesktopView = () => {
     <Container>
       <StyledNavBar activeIcons={navIcons} onToggleIcon={toggleHideWindow}/>
       {
-        activeWindows.filter((window) => window.open && window.active).map((window) => (
+        activeWindows.filter((window) => window.open && window.active && !window.link).map((window) => (
           <CustomWindow 
             key={window.id}
             title={window.title}
@@ -70,7 +70,10 @@ const DesktopView = () => {
       <Windows>
         {
           activeWindows.map((window) => (
-            <DesktopIcon key={window.id} onClick={() => openWindow(window.id)}>
+            <DesktopIcon 
+              key={window.id}
+              onClick={() => window.link ? window.onClick() : openWindow(window.id)}
+            >
               {window.desktopIcon}
               <IconLabel>
                 {window.id}
