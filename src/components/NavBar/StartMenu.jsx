@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { styled } from 'styled-components';
 import { WindowContext } from '../../contexts/WindowContext';
 import { Button, MenuList, MenuListItem, Separator } from 'react95';
@@ -62,9 +62,14 @@ const StartMenu = () => {
   )
 };
 
+const BoldSpan = styled.span`
+  color: #bdbdbd;
+  font-size: 18px;
+  font-weight: bold;
+`;
 
-const Rotated = styled.div`
-  transform: rotate(-90deg);
+const MenuContainer = styled(MenuList)`
+  display: flex;
 `;
 
 const NormalSpan = styled.span`
@@ -72,26 +77,8 @@ const NormalSpan = styled.span`
   color: #ffff;
 `;
 
-const BoldSpan = styled.span`
-  color: #bdbdbd;
-  font-size: 18px;
-  font-weight: bold;
-`;
-
-
-const MenuContainer = styled(MenuList)`
-  display: flex;
-`;
-
-const WindowsContainer = styled.div`
-  align-items: center;
-  background-color: #808080;
-  color: white;
-  display: flex;
-  justify-content: center;
-  padding: 0px 0px;
-  user-select: none;
-  width: 40px;
+const Rotated = styled.div`
+  transform: rotate(-90deg);
 `;
 
 const SlidingDiv = styled.div`
@@ -122,6 +109,17 @@ const StyledMenuList = styled.div`
 
 const StyledMenuListItem = styled(MenuListItem)`
   cursor: pointer !important;
+`;
+
+const WindowsContainer = styled.div`
+  align-items: center;
+  background-color: #808080;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 0px 0px;
+  user-select: none;
+  width: 40px;
 `;
 
 export default StartMenu;

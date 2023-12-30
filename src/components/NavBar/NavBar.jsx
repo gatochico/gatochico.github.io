@@ -1,10 +1,8 @@
-import { useContext, useState, useRef } from 'react';
 import { styled } from 'styled-components';
-import { WindowContext } from '../../contexts/WindowContext';
 import StartMenu from './StartMenu';
 import Time from './Time';
 import { AppBar, Frame, Toolbar } from 'react95';
-import { arrayOf, node, shape, string } from 'prop-types';
+import { arrayOf, func, node, shape, string } from 'prop-types';
 
 const NavBar = ({ className, activeIcons, onToggleIcon }) => {
 
@@ -43,7 +41,8 @@ NavBar.propTypes = {
   activeIcons: arrayOf(shape({
     id: string,
     icon: node,
-  }))
+  })),
+  onToggleIcon: func.isRequired,
 };
 
 const LeftSide = styled.div`

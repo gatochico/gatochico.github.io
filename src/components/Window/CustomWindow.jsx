@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { styled } from 'styled-components';
 import { Button, Window, WindowHeader, WindowContent } from 'react95';
-import { func, string, node, shape, number } from 'prop-types';
+import { func, string, node, shape } from 'prop-types';
 import Draggable from "react-draggable";
 
 const CustomWindow = ({ content, title, height, width, onHide, onClose, positioning }) => {
@@ -11,9 +11,9 @@ const CustomWindow = ({ content, title, height, width, onHide, onClose, position
   <Draggable 
     handle='.handle'
     bounds="parent"
-    ref={nodeRef}
+    nodeRef={nodeRef}
   >
-    <StyledWindow $height={height} $width={width} $positioning={positioning}>
+    <StyledWindow ref={nodeRef} $height={height} $width={width} $positioning={positioning}>
       <WindowTitle className='handle'>
         <StyledSpan>{title}</StyledSpan>
         <Buttons>
@@ -50,7 +50,10 @@ CustomWindow.propTypes = {
   title: string,
   height: string,
   width: string,
-  positioning: shape,
+  positioning: shape({
+    top: string,
+    right: string,
+  }).isRequired,
 };
 
 const Buttons = styled.div`
@@ -58,33 +61,6 @@ const Buttons = styled.div`
   gap: 2px;
 `;
 
-const WindowTitle = styled(WindowHeader)`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const HideIcon = styled.div`
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin-left: -1px;
-  margin-top: -1px;
-  transform: rotateZ(0deg);
-  position: relative;
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    background: ${({ theme }) => theme.materialText};
-  }
-  &:after {
-    bottom: 0;
-    height: 3px;
-    width: 100%;
-    left: 0px;
-  }
-`;
 
 const CloseIcon = styled.div`
   display: inline-block;
@@ -115,6 +91,28 @@ const CloseIcon = styled.div`
   }
 `;
 
+const HideIcon = styled.div`
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: -1px;
+  margin-top: -1px;
+  transform: rotateZ(0deg);
+  position: relative;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    background: ${({ theme }) => theme.materialText};
+  }
+  &:after {
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    left: 0px;
+  }
+`;
+
 const StyledSpan = styled.span`
   cursor: default;
 `;
@@ -127,6 +125,12 @@ const StyledWindow = styled(Window)`
   right: ${({ $positioning }) => $positioning?.right};
   left: ${({ $positioning }) => $positioning?.left};
   bottom: ${({ $positioning }) => $positioning?.bottom};
+`;
+
+const WindowTitle = styled(WindowHeader)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export default CustomWindow;

@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { WindowContext } from '../contexts/WindowContext';
 import { ProgressBar } from 'react95';
 import { randomInteger } from '../utils/utils';
-import W95Logo from '../assets/svgs/W95Logo.svg';
+import W95Logo from '../assets/svgs/w95Logo.svg';
 
 const LoadingView = () => {
   const { setComputerState } = useContext(WindowContext);
