@@ -6,6 +6,7 @@ import windows from './windows';
 
 const DesktopView = () => {
   const [activeWindows, setActiveWindows] = useState([]);
+  const [desktopOn, setDesktopOn] = useState(true);
 
   useEffect(() => {
     setActiveWindows(windows);
@@ -52,36 +53,42 @@ const DesktopView = () => {
 
   return (
     <Container>
-      <StyledNavBar activeIcons={navIcons} onToggleIcon={toggleHideWindow}/>
       {
-        activeWindows.filter((window) => window.open && window.active && !window.link).map((window) => (
-          <CustomWindow 
-            key={window.id}
-            title={window.title}
-            content={window.content}
-            width={window.dimensions.width}
-            height={window.dimensions.height}
-            positioning={window.positioning}
-            onClose={() => closeWindow(window.id)}
-            onHide={() => toggleHideWindow(window.id)}
-          />
-        )) 
+        desktopOn && (
+          <>
+            <StyledNavBar setDesktopOn={setDesktopOn} activeIcons={navIcons} onToggleIcon={toggleHideWindow}/>
+            {
+              activeWindows.filter((window) => window.open && window.active && !window.link).map((window) => (
+                <CustomWindow 
+                  key={window.id}
+                  title={window.title}
+                  content={window.content}
+                  width={window.dimensions.width}
+                  height={window.dimensions.height}
+                  positioning={window.positioning}
+                  onClose={() => closeWindow(window.id)}
+                  onHide={() => toggleHideWindow(window.id)}
+                />
+              )) 
+            }
+            <Windows>
+              {
+                activeWindows.map((window) => (
+                  <DesktopIcon 
+                    key={window.id}
+                    onClick={() => window.link ? window.onClick() : openWindow(window.id)}
+                  >
+                    {window.desktopIcon}
+                    <IconLabel>
+                      {window.id}
+                    </IconLabel>
+                  </DesktopIcon>
+                ))
+              }
+            </Windows>
+          </>
+        ) 
       }
-      <Windows>
-        {
-          activeWindows.map((window) => (
-            <DesktopIcon 
-              key={window.id}
-              onClick={() => window.link ? window.onClick() : openWindow(window.id)}
-            >
-              {window.desktopIcon}
-              <IconLabel>
-                {window.id}
-              </IconLabel>
-            </DesktopIcon>
-          ))
-        }
-      </Windows>
     </Container>
   )
 };

@@ -5,7 +5,7 @@ import { node } from 'prop-types';
 export const WindowContext = createContext();
 
 const WindowsState = ({ children }) => {
-  const [computerState, setComputerState] = useState("desktop");
+  const [computerState, setComputerState] = useState("off");
 
   return (
     <WindowContext.Provider

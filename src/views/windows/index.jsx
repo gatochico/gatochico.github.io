@@ -6,13 +6,13 @@ import ProjectsWindow from './Projects';
 export const windows = [
   { 
     id: 'About',
-    title: 'About me ✨',
+    title: 'Welcome to my page! ✨',
     open: true,
     active: true,
     desktopIcon: <Progman24 variant="32x32_4" height={32} width={32}/>,
     icon: <Progman24 variant="32x32_4" height={25} width={25}/>,
     content: <AboutWindow />,
-    dimensions: { height: '600px', width: '500px' },
+    dimensions: { height: '650px', width: '750px' },
     positioning: { top: '10px', right: '10px' },
   },
   { 

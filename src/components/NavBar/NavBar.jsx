@@ -4,14 +4,14 @@ import Time from './Time';
 import { AppBar, Frame, Toolbar } from 'react95';
 import { arrayOf, func, node, shape, string } from 'prop-types';
 
-const NavBar = ({ className, activeIcons, onToggleIcon }) => {
+const NavBar = ({ className, setDesktopOn, activeIcons, onToggleIcon }) => {
 
   return (
     <StyledAppBar className={className}>
       <StyledToolbar>
         <ToolbarItems>
             <LeftSide>
-            <StartMenu />
+            <StartMenu setDesktopOn={setDesktopOn}/>
             {
               activeIcons.map((icon) => (
                 <StyledFrame 
@@ -38,6 +38,7 @@ NavBar.defaultProps = {
 
 NavBar.propTypes = {
   className: string,
+  setDesktopOn: func.isRequired,
   activeIcons: arrayOf(shape({
     id: string,
     icon: node,

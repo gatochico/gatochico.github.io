@@ -3,8 +3,10 @@ import { styled } from 'styled-components';
 import { WindowContext } from '../../contexts/WindowContext';
 import { Button, MenuList, MenuListItem, Separator } from 'react95';
 import { Shell3228, User1, Winhlp324001 } from '@react95/icons';
+import { openInNewTab } from '../../utils/utils';
+import { func } from 'prop-types';
 
-const StartMenu = () => {
+const StartMenu = ({ setDesktopOn }) => {
   const { setComputerState } = useContext(WindowContext);
   const refMenu = useRef(undefined);
   const [open, setOpen] = useState(false);
@@ -23,6 +25,15 @@ const StartMenu = () => {
     toggleMenuShow(false);
   };
 
+  const turnOffComputer = () => {
+    setTimeout(() => {
+      setDesktopOn(false);
+      setTimeout(() => {
+        setComputerState("off")
+      }, 1000);
+    }, 1000);
+  };
+
   return (
     <Start ref={refMenu}>
       <SlidingDiv $isOpen={open}>
@@ -39,11 +50,14 @@ const StartMenu = () => {
             onClick={() => toggleMenuShow(false)}
           >
             <StyledMenuListItem>
-              <Winhlp324001 variant="32x32_4"/>
+              <Winhlp324001 
+                variant="32x32_4"
+                onClick={() => openInNewTab('https://github.com/gatochico')}
+              />
               Github
             </StyledMenuListItem>
             <Separator />
-            <StyledMenuListItem onClick={() => setComputerState("off")}>
+            <StyledMenuListItem onClick={() => turnOffComputer()}>
               <Shell3228 variant="32x32_4"/>
               Sh&#818;ut Down...
             </StyledMenuListItem>
@@ -60,6 +74,11 @@ const StartMenu = () => {
       </StyledButton>
     </Start>
   )
+};
+
+
+StartMenu.propTypes = {
+  setDesktopOn: func.isRequired,
 };
 
 const BoldSpan = styled.span`
